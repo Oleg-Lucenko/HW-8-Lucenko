@@ -1,4 +1,4 @@
-function isString(data: string | number): boolean {
+function isString(data: unknown): data is string {
     if (typeof data === 'string') {
         return true;
     } else {
@@ -8,7 +8,7 @@ function isString(data: string | number): boolean {
 
 let someArr: any[] = [2, 'a', false, 'b', 4, 9, 'l'];
 
-function stringsFilter(arr: any[]) {
+function stringsFilter(arr: any[]): string[] | [] {
     return arr.filter(item => typeof item === 'string');
 };
 
@@ -33,7 +33,7 @@ function propertySearch(obj: ForSomeObject) {
 };
 
 
-function descriptionPresence(obj: ForSomeObject): boolean {
+function descriptionPresence(obj: ForSomeObject): boolean{
     if ('description' in obj) {
         return true;
     } else {
@@ -70,7 +70,7 @@ function objectNarrowing(obj: ForSomeObject): boolean {
 
 let someVar: string | number | boolean;
 
-function actions(value: string | number | boolean ) {
+function actions(value: string | number | boolean ): string | number | boolean | undefined {
     if (typeof value === 'string') {
         return `Hello, ${value}`;
     } else if (typeof value === 'number') {
@@ -82,7 +82,7 @@ function actions(value: string | number | boolean ) {
 
 
 
-function checkFunction(value: any): boolean {
+function checkFunction(value: any): value is Function {
     if (typeof value === 'function') {
         return true;
     } else {
@@ -90,7 +90,7 @@ function checkFunction(value: any): boolean {
     };
 };
 
-function activation(value: any) {
+function activation(value: any): void {
     if (checkFunction(value)) {
         value();
     };
@@ -98,13 +98,10 @@ function activation(value: any) {
 
 
 class Animal {
-    numberOfPaws: number;
-    presenceOfWings: boolean;
-
-    constructor(numberOfPaws: number, presenceOfWings: boolean) {
-        this.numberOfPaws = numberOfPaws;
-    }
-}
+    run() {
+        console.log('run');
+    };
+};
 
 class Cat extends Animal {
     meow() {
@@ -119,7 +116,7 @@ class Dog extends Animal {
     };
 };
 
-function checkInstance(value: Cat | Dog) {
+function checkInstance(value: Cat | Dog): void {
     if (value instanceof Cat) {
         alert('its cat')
     } else if ((value instanceof Dog)) {
