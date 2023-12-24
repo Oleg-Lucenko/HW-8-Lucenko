@@ -1,16 +1,18 @@
 function isString(data: unknown): data is string {
-    if (typeof data === 'string') {
-        return true;
-    } else {
-        return false
-    };
+    return typeof data === 'string';
 };
+
+
+
 
 let someArr: any[] = [2, 'a', false, 'b', 4, 9, 'l'];
 
 function stringsFilter(arr: any[]): string[] | [] {
     return arr.filter(item => typeof item === 'string');
 };
+
+
+
 
 interface ForSomeObject {
     name: string,
@@ -24,47 +26,36 @@ let someObj: ForSomeObject = {
     quantity: 3
 };
 
-function propertySearch(obj: ForSomeObject) {
+function propertySearch(obj: ForSomeObject): number | undefined {
     if ('quantity' in obj && typeof obj.quantity === 'number') {
         return obj.quantity;
-    } else {
-        return false
     };
 };
 
 
-function descriptionPresence(obj: ForSomeObject): boolean{
-    if ('description' in obj) {
-        return true;
-    } else {
-        return false;
-    };
+
+
+
+
+function descriptionPresence(obj: ForSomeObject): boolean {
+    return 'description' in obj;
 };
 
 function quantityPresence(obj: ForSomeObject): boolean {
-    if ('quantity' in obj) {
-        return true;
-    } else {
-        return false;
-    };
+    return 'quantity' in obj;
 };
 
 function quantityIsNumber(obj: ForSomeObject): boolean {
-    if (typeof obj.quantity === 'number') {
-        return true;
-    } else {
-        return false;
-    };
+    return typeof obj.quantity === 'number';
 };
 
 
 function objectNarrowing(obj: ForSomeObject): boolean {
-    if (descriptionPresence(obj) && quantityPresence(obj) && quantityIsNumber(obj)) {
-        return true;
-    } else {
-        return false;
-    };
+        return (descriptionPresence(obj) && quantityPresence(obj) && quantityIsNumber(obj));
 };
+
+
+
 
 
 
@@ -82,12 +73,10 @@ function actions(value: string | number | boolean ): string | number | boolean |
 
 
 
+
+
 function checkFunction(value: any): value is Function {
-    if (typeof value === 'function') {
-        return true;
-    } else {
-        return false;
-    };
+        return typeof value === 'function';
 };
 
 function activation(value: any): void {
@@ -95,6 +84,10 @@ function activation(value: any): void {
         value();
     };
 };
+
+
+
+
 
 
 class Animal {
@@ -118,9 +111,9 @@ class Dog extends Animal {
 
 function checkInstance(value: Cat | Dog): void {
     if (value instanceof Cat) {
-        alert('its cat')
+        alert('its cat');
     } else if ((value instanceof Dog)) {
-        alert('its dog')
+        alert('its dog');
     };
 };
 
